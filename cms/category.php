@@ -28,10 +28,11 @@
             <div class="col-md-8">
 
                 <?php
-                    $query = "SELECT * FROM posts WHERE post_status = 'published'";
-                    
+                if(isset($_GET['cat'])) {
+                    $cat_id = $_GET['cat'];
+                }
+                    $query = "SELECT * FROM posts WHERE post_category_id = '$cat_id'";
                     $results_posts = mysqli_query($connection,$query);
-
                     while ($row = mysqli_fetch_assoc($results_posts)) {
                         $post_id = $row["post_id"];
                         $post_title = $row["post_title"];
